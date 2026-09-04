@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../services/auth_service.dart';
 import '../widgets/animated_logo.dart';
 import '../widgets/animated_login_form.dart';
@@ -25,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     AuthService.login();
 
     if (mounted) {
-      Navigator.of(context).pushReplacementNamed('/home');
+      context.go('/home');
     }
   }
 

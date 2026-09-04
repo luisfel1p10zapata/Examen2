@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/login_screen.dart';
 import '../screens/home_screen.dart';
+import '../screens/producto__screen.dart';
 import '../services/auth_service.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -27,51 +28,103 @@ final GoRouter appRouter = GoRouter(
   },
 
   routes: [
-    // -------------------------
+    // =====================================================
     // LOGIN
-    // -------------------------
+    // =====================================================
     GoRoute(
       path: '/login',
-
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-
           child: const LoginScreen(),
 
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(opacity: animation, child: child);
+          transitionsBuilder: (
+            context,
+            animation,
+            secondaryAnimation,
+            child,
+          ) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
           },
         );
       },
     ),
 
-    // -------------------------
+    // =====================================================
     // HOME
-    // -------------------------
+    // =====================================================
     GoRoute(
       path: '/home',
-
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-
           child: const HomeScreen(),
 
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          transitionsBuilder: (
+            context,
+            animation,
+            secondaryAnimation,
+            child,
+          ) {
             // Movimiento desde la derecha
-            final slideAnimation =
-                Tween<Offset>(
-                  begin: const Offset(1.0, 0.0),
-                  end: Offset.zero,
-                ).animate(
-                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
-                );
+            final slideAnimation = Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOut,
+              ),
+            );
 
             return SlideTransition(
               position: slideAnimation,
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        );
+      },
+    ),
 
-              child: FadeTransition(opacity: animation, child: child),
+    // =====================================================
+    // DETALLE DEL PRODUCTO
+    // =====================================================
+    GoRoute(
+      path: '/producto',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const ProductoScreen(),
+
+          transitionsBuilder: (
+            context,
+            animation,
+            secondaryAnimation,
+            child,
+          ) {
+            // La pantalla entra desde la derecha
+            final slideAnimation = Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOut,
+              ),
+            );
+
+            return SlideTransition(
+              position: slideAnimation,
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
             );
           },
         );
