@@ -13,26 +13,19 @@ class HomeScreen extends StatelessWidget {
       canPop: false,
 
       child: Scaffold(
-
         // -------------------------
         // APP BAR
         // -------------------------
-
         appBar: AppBar(
-          title: const Text(
-            'Home',
-          ),
+          title: const Text('Home'),
 
           centerTitle: true,
 
-          automaticallyImplyLeading:
-              false,
+          automaticallyImplyLeading: false,
 
           actions: [
-
             IconButton(
               onPressed: () {
-
                 // Solo si quieren agregar
                 // cerrar sesión después.
 
@@ -41,9 +34,7 @@ class HomeScreen extends StatelessWidget {
                 context.go('/login');
               },
 
-              icon: const Icon(
-                Icons.logout,
-              ),
+              icon: const Icon(Icons.logout),
             ),
           ],
         ),
@@ -51,17 +42,11 @@ class HomeScreen extends StatelessWidget {
         // -------------------------
         // CONTENIDO
         // -------------------------
-
         body: const Center(
           child: Text(
             'Bienvenido al Home',
 
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight:
-                  FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
       ),

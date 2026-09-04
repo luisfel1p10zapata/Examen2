@@ -27,7 +27,6 @@ final GoRouter appRouter = GoRouter(
   },
 
   routes: [
-
     // -------------------------
     // LOGIN
     // -------------------------
@@ -40,16 +39,8 @@ final GoRouter appRouter = GoRouter(
 
           child: const LoginScreen(),
 
-          transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
-          ) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
           },
         );
       },
@@ -67,31 +58,20 @@ final GoRouter appRouter = GoRouter(
 
           child: const HomeScreen(),
 
-          transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
-          ) {
-
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Movimiento desde la derecha
-            final slideAnimation = Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(
-              CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeInOut,
-              ),
-            );
+            final slideAnimation =
+                Tween<Offset>(
+                  begin: const Offset(1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+                );
 
             return SlideTransition(
               position: slideAnimation,
 
-              child: FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
+              child: FadeTransition(opacity: animation, child: child),
             );
           },
         );
