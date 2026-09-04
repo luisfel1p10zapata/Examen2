@@ -24,12 +24,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void login() {
-  AuthService.login();
+    AuthService.login();
 
-  if (mounted) {
-    context.go('/home');
+    if (mounted) {
+      context.go('/home');
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {

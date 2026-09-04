@@ -22,46 +22,41 @@ class _HomeScreenState extends State<HomeScreen>
   int _selectedBottomItem = 0;
   int _cartItems = 2;
 
-  final List<String> _categories = [
-    'All',
-    'Ropa',
-    'Accesorios',
-    'Bienestar',
-  ];
+  final List<String> _categories = ['All', 'Ropa', 'Accesorios', 'Bienestar'];
 
   final List<Map<String, dynamic>> _products = [
-  {
-    'category': 'Ropa',
-    'name': 'Producto Premium',
-    'price': 49.99,
-    'oldPrice': null,
-    'image': 'assets/images/img1.jpg',
-    'isSale': false,
-  },
-  {
-    'category': 'Accesorios',
-    'name': 'Diseño Especial',
-    'price': 34.50,
-    'oldPrice': null,
-    'image': 'assets/images/img2.jpg',
-    'isSale': false,
-  },
-  {
-    'category': 'Bienestar',
-    'name': 'Producto Natural',
-    'price': 18.00,
-    'oldPrice': null,
-    'image': 'assets/images/img3.jpg',
-    'isSale': false,
-  },
-  {
-    'category': 'Ropa',
-    'name': 'Oferta Especial',
-    'price': 55.00,
-    'oldPrice': 75.00,
-    'image': 'assets/images/img4.jpg',
-    'isSale': true,
-  },
+    {
+      'category': 'Ropa',
+      'name': 'Producto Premium',
+      'price': 49.99,
+      'oldPrice': null,
+      'image': 'assets/images/img1.jpg',
+      'isSale': false,
+    },
+    {
+      'category': 'Accesorios',
+      'name': 'Diseño Especial',
+      'price': 34.50,
+      'oldPrice': null,
+      'image': 'assets/images/img2.jpg',
+      'isSale': false,
+    },
+    {
+      'category': 'Bienestar',
+      'name': 'Producto Natural',
+      'price': 18.00,
+      'oldPrice': null,
+      'image': 'assets/images/img3.jpg',
+      'isSale': false,
+    },
+    {
+      'category': 'Ropa',
+      'name': 'Oferta Especial',
+      'price': 55.00,
+      'oldPrice': 75.00,
+      'image': 'assets/images/img4.jpg',
+      'isSale': true,
+    },
   ];
 
   @override
@@ -101,18 +96,12 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   void _addToCart() {
-    setState(() {
-      _cartItems++;
-    });
+  setState(() {
+    _cartItems++;
+  });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Producto agregado al carrito'),
-        duration: Duration(milliseconds: 900),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-  }
+  context.push('/producto');
+}
 
   void _changeBottomItem(int index) {
     setState(() {
@@ -143,10 +132,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     if (message.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          behavior: SnackBarBehavior.floating,
-        ),
+        SnackBar(content: Text(message), behavior: SnackBarBehavior.floating),
       );
     }
   }
@@ -156,9 +142,7 @@ class _HomeScreenState extends State<HomeScreen>
       context: context,
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(25),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
       ),
       builder: (context) {
         return SafeArea(
@@ -188,10 +172,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                 const Text(
                   'Mi perfil',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
 
                 const SizedBox(height: 25),
@@ -211,9 +192,7 @@ class _HomeScreenState extends State<HomeScreen>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFE91E63),
                       foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -238,21 +217,20 @@ class _HomeScreenState extends State<HomeScreen>
         body: SafeArea(
           child: Column(
             children: [
-              HomeHeader(
-                cartItems: _cartItems,
-              ),
+              // HEADER
+              HomeHeader(cartItems: _cartItems),
 
+              // CONTENIDO
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.only(
-                    bottom: 20,
-                  ),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 12),
 
+                      // CATEGORÍAS
                       CategorySelector(
                         categories: _categories,
                         selectedIndex: _selectedCategory,
@@ -261,13 +239,11 @@ class _HomeScreenState extends State<HomeScreen>
 
                       const SizedBox(height: 28),
 
+                      // TÍTULO DE PRODUCTOS
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 21,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 21),
                         child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
                               'Featured Products',
@@ -280,14 +256,10 @@ class _HomeScreenState extends State<HomeScreen>
 
                             GestureDetector(
                               onTap: () {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text(
-                                      'Filtros próximamente',
-                                    ),
-                                    behavior:
-                                        SnackBarBehavior.floating,
+                                    content: Text('Filtros próximamente'),
+                                    behavior: SnackBarBehavior.floating,
                                   ),
                                 );
                               },
@@ -315,32 +287,26 @@ class _HomeScreenState extends State<HomeScreen>
 
                       const SizedBox(height: 16),
 
+                      // PRODUCTOS
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 21,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 21),
                         child: GridView.builder(
                           shrinkWrap: true,
-                          physics:
-                              const NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: _filteredProducts.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 14,
-                            childAspectRatio: 0.68,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 14,
+                                childAspectRatio: 0.68,
+                              ),
                           itemBuilder: (context, index) {
-                            final product =
-                                _filteredProducts[index];
+                            final product = _filteredProducts[index];
 
                             return ProductCard(
-                              key: ValueKey(
-                                '${product['name']}_$index',
-                              ),
-                              category:
-                                  product['category'],
+                              key: ValueKey('${product['name']}_$index'),
+                              category: product['category'],
                               name: product['name'],
                               price: product['price'],
                               oldPrice: product['oldPrice'],
@@ -360,6 +326,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
 
+        // BARRA INFERIOR
         bottomNavigationBar: HomeBottomNav(
           selectedIndex: _selectedBottomItem,
           cartItems: _cartItems,

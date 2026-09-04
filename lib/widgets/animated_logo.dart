@@ -4,14 +4,11 @@ class AnimatedLogo extends StatefulWidget {
   const AnimatedLogo({super.key});
 
   @override
-  State<AnimatedLogo> createState() =>
-      _AnimatedLogoState();
+  State<AnimatedLogo> createState() => _AnimatedLogoState();
 }
 
-class _AnimatedLogoState
-    extends State<AnimatedLogo>
+class _AnimatedLogoState extends State<AnimatedLogo>
     with SingleTickerProviderStateMixin {
-
   late AnimationController controller;
 
   late Animation<double> opacity;
@@ -25,25 +22,15 @@ class _AnimatedLogoState
     controller = AnimationController(
       vsync: this,
 
-      duration: const Duration(
-        milliseconds: 900,
-      ),
+      duration: const Duration(milliseconds: 900),
     );
 
-    opacity = CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeOut,
-    );
+    opacity = CurvedAnimation(parent: controller, curve: Curves.easeOut);
 
     scale = Tween<double>(
       begin: 0.75,
       end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Curves.easeOutBack,
-      ),
-    );
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeOutBack));
 
     controller.forward();
   }

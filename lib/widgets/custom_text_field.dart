@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-
   final String label;
 
   final String hint;
@@ -27,8 +26,7 @@ class CustomTextField extends StatelessWidget {
 
     this.obscureText = false,
 
-    this.keyboardType =
-        TextInputType.text,
+    this.keyboardType = TextInputType.text,
 
     this.onTogglePassword,
 
@@ -38,23 +36,19 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-
         // -------------------------
         // LABEL
         // -------------------------
-
         Text(
           label,
 
           style: const TextStyle(
             fontSize: 11,
 
-            fontWeight:
-                FontWeight.w500,
+            fontWeight: FontWeight.w500,
 
             letterSpacing: 1.2,
 
@@ -62,14 +56,11 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
 
         // -------------------------
         // INPUT
         // -------------------------
-
         TextField(
           controller: controller,
 
@@ -77,85 +68,56 @@ class CustomTextField extends StatelessWidget {
 
           keyboardType: keyboardType,
 
-          style: const TextStyle(
-            fontSize: 14,
-
-            color: Color(0xFF333333),
-          ),
+          style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
 
           decoration: InputDecoration(
-
             hintText: hint,
 
-            hintStyle: const TextStyle(
-              color: Color(0xFFC8C8C8),
-
-              fontSize: 14,
-            ),
+            hintStyle: const TextStyle(color: Color(0xFFC8C8C8), fontSize: 14),
 
             filled: true,
 
-            fillColor:
-                const Color(0xFFF8F9FA),
+            fillColor: const Color(0xFFF8F9FA),
 
-            contentPadding:
-                const EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 15,
             ),
 
-            border:
-                OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(7),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7),
 
-              borderSide:
-                  BorderSide.none,
+              borderSide: BorderSide.none,
             ),
 
-            enabledBorder:
-                OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(7),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7),
 
-              borderSide:
-                  BorderSide.none,
+              borderSide: BorderSide.none,
             ),
 
-            focusedBorder:
-                OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(7),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7),
 
-              borderSide:
-                  const BorderSide(
-                color: Color(0xFFE91E63),
-
-                width: 1,
-              ),
+              borderSide: const BorderSide(color: Color(0xFFE91E63), width: 1),
             ),
 
             // -------------------------
             // ICONO PASSWORD
             // -------------------------
+            suffixIcon: onTogglePassword != null
+                ? IconButton(
+                    onPressed: onTogglePassword,
 
-            suffixIcon:
-                onTogglePassword != null
-                    ? IconButton(
-                        onPressed:
-                            onTogglePassword,
+                    icon: Icon(
+                      showPassword ? Icons.visibility : Icons.visibility_off,
 
-                        icon: Icon(
-                          showPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                      size: 19,
 
-                          size: 19,
-
-                          color: Colors.grey,
-                        ),
-                      )
-                    : null,
+                      color: Colors.grey,
+                    ),
+                  )
+                : null,
           ),
         ),
       ],
